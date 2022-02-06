@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import pp from "../images/shivang.jpg";
+import pp from "../images/studentshivang.jpg";
 import lhsImg from "../images/hellobg.jpg";
 
 const Lhs = () => {
