@@ -1,0 +1,295 @@
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Navbar UI starts here */
+
+.nav-link{
+  padding:0.4rem;
+  border-radius:10%;
+}
+
+.nav-link:hover{
+  background-color: navy;
+  color: navajowhite!important;
+}
+
+/* Navbar UI ends here */
+
+/*Home comp starts here*/
+
+#home_b{
+  background: url("../src/images/home.jpg");
+}
+
+.home_pg{
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color:orange;
+}
+.home_pg p{
+  transform: scale(2);
+}
+/*Home comp ends here*/
+
+/*SignUp SIgnIn start here*/
+
+.signup_card {
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.4);
+  width: 60%;
+  height: 65vh;
+  border-radius: 2rem;
+  display: flex;
+  height: fit-content;
+}
+
+
+.signup_in {
+  border-top-width: 0px !important;
+  border-right-width: 0px !important;
+  border-left-width: 0px !important;
+  border-bottom-width: 0.15rem !important;
+  border-end-end-radius: 0px !important;
+  background: #fff!important;
+}
+
+/*SignUp SIgnIn end here*/
+
+
+
+.contact_row,
+.contact_row2,
+.contact_row3,
+.contact_row4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1.5rem 2rem 1.5rem;
+}
+.contact_row3 {
+  flex-direction: row;
+}
+
+.contact_div {
+  margin: 1rem;
+  height: 5rem;
+  width: 30% !important;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.2rem rosybrown;
+}
+.contact_row2 {
+  height:fit-content;
+}
+.contact_row3 {
+  padding-top:4rem;
+}
+.contact_div_lg {
+  flex-direction: column;
+  height: 100%;
+  margin: 1.5rem 1.5rem 2rem 1.5rem;
+  box-shadow: 0.1rem 0.1rem 0.2rem 0.1rem rosybrown;
+  border-radius: 1rem;
+  padding-bottom: 2rem;
+  
+}
+
+.contact_div2 {
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.2rem pink;
+  border-radius: 1rem;
+  margin: 1rem;
+  height: 5rem;
+  width: 30% !important;
+  border: none;
+}
+
+.contact_div_md {
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.2rem pink;
+  border-radius: 1rem;
+  width: 95% !important;
+  height:10rem;
+  border: none;
+}
+
+/* Contact Page UI ends */
+
+/* About Page UI Starts */
+
+.about_img{
+ width: 200px;
+ border-radius: 2rem;
+}
+
+#aboutColImg{
+  height:100%;
+  width: 100%;
+  padding: 0%;
+  border-top-left-radius:2rem ;
+  border-bottom-left-radius:2rem;
+  padding-right:1rem!important;
+  margin-left:-1.4rem!important;
+}
+
+#about_p{
+  color: blueviolet;
+}
+
+a:hover{
+  color:navajowhite!important;
+}
+
+#about_btn{
+  border: navajowhite;
+  border-radius: 0.8rem;
+
+}
+
+#about_btn:hover{
+  background-color: navy;
+  color: navajowhite;
+}
+
+/* About Page UI Ends */
+
+/* Error Page UI starts*/
+
+.errpage{
+  width: 100%;
+  height: 90vh;
+  background: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#errpage_p,#errpage_h1{
+  transform: scale(4);
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 5rem;
+}
+
+#errpage_h1{
+  transform: scale(5);
+  color: rgba(0, 0, 0, 0.4);
+}
+
+#errpage_btn:hover{
+  background-color: royalblue;
+  color: pink;
+}
+#errpage_btn{
+  padding: 1rem;
+  border-radius: 1rem;
+  transform: scale(2);
+  text-decoration: none;
+}
+
+
+/* Error Page UI ends*/
+
+
+
+@media (max-width: 768px) {
+  
+  .nav-link:hover{
+    background: linear-gradient(0deg,rgba(238,130,238,0.5),violet)!important;
+    color: #000!important;
+    border-radius: 2rem;
+    text-align: center;
+  }
+  
+  /* about page starts here */
+  
+  #nav-home-tab:hover{
+    background: linear-gradient(180deg,rgba(360,0,0,1),pink);
+    border-radius: 0;
+  }
+  #nav-home-tab{
+    margin-top: 1rem;
+  }
+  
+  #nav-profile-tab{
+    margin-top: 1rem;
+  }
+  
+  #nav-profile-tab:hover{
+    background: linear-gradient(180deg,rgba(360,0,0,1),pink);
+    border-radius: 0;
+  }
+  
+  #aboutColImg{
+    height:100%;
+    width: 100%;
+    padding: 0%;
+    border-radius: 2rem;
+    padding-right:0!important;
+    margin-left:0!important;
+    margin-top:0.7rem!important;
+  }
+
+  /* about page ends here */
+  
+  /* Contact Page UI starts */
+  .signup_card {
+    flex-direction: column;
+  }
+  .contact_div2 {
+    width: 80% !important;
+  }
+  
+  .contact_div_lg{
+    padding-bottom: 2rem;
+    height: fit-content;
+  }
+  
+  .contact_row2{
+    margin-bottom: 2rem;
+    height: fit-content;
+  }
+
+  .contact_div {
+    width: 80% !important;
+    margin: 2rem;
+    height: 4rem;
+  }
+  /* Contact Page UI ends */
+
+  #errpage_p,#errpage_btn{
+    transform: scale(2);
+  }
+
+  #errpage_btn{
+    background-color: royalblue;
+    color: pink;
+  }
+
+  #home_b{
+    background: none;
+    background: linear-gradient(180deg,rgba(360,0,0,1),violet);
+  }
+}
+
+@media (max-width:505px) {
+  .home_pg{
+    color:brown;
+    background: url("../src/images/homePortrait.jfif");
+    background-repeat: no-repeat;
+    height: 90vh;
+  }
+}
+
