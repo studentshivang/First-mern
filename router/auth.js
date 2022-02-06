@@ -6,9 +6,6 @@ const jwt = require("jsonwebtoken");
 
 const authenticate = require("../middleware/authenticate");
 
-router.get("/", (req, res) => {
-  res.send(`Hello from the server router js`);
-});
 
 //Using promises
 
