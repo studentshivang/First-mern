@@ -286,7 +286,7 @@ a:hover{
 
 @media (max-width:505px) {
   .home_pg{
-    color:pink;
+    color:rgb(34, 204, 43);
     background: url("../src/images/redFlowerbg.jpg");
     background-repeat: no-repeat;
     height: 100vh;
