@@ -287,7 +287,7 @@ a:hover{
 @media (max-width:505px) {
   .home_pg{
     color:brown;
-    background: url("../src/images/homePortrait.jfif");
+    background: url("../src/images/hellobg.jfif");
     background-repeat: no-repeat;
     height: 90vh;
   }
