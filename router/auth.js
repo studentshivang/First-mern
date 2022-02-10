@@ -43,7 +43,7 @@ router.post("/register", async (req, res) => {
   const { name, email, phone, work, password, cpassword } = req.body;
 
   if (!name || !email || !phone || !work || !password || !cpassword) {
-    alert("Please fill the field properly!")
+    window.alert("Please fill the field properly!")
     return res.status(422).json({ error: `Please fill the field properly!` });
   }
   
@@ -68,7 +68,7 @@ router.post("/register", async (req, res) => {
   try {
     const value = await schema.validateAsync(req.body);
     if(value.error){
-      alert(value.error.details[0].message);
+      window.alert(value.error.details[0].message);
       return res.status(400).send(value.error.details[0].message);
     }
   } catch (err) {
