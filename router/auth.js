@@ -43,9 +43,11 @@ router.post("/register", async (req, res) => {
   const { name, email, phone, work, password, cpassword } = req.body;
 
   if (!name || !email || !phone || !work || !password || !cpassword) {
+    alert("Please fill the field properly!")
     return res.status(422).json({ error: `Please fill the field properly!` });
   }
-
+  
+  
   const schema = Joi.object({
     name: Joi.string().alphanum().min(3).max(30).required(),
 
@@ -66,8 +68,8 @@ router.post("/register", async (req, res) => {
   try {
     const value = await schema.validateAsync(req.body);
     if(value.error){
-      res.status(400).send(value.error.details[0].message);
       alert(value.error.details[0].message);
+      return res.status(400).send(value.error.details[0].message);
     }
   } catch (err) {
     console.log(err);

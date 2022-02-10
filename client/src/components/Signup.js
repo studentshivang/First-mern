@@ -42,7 +42,7 @@ const Signup = () => {
     
     const data = await response.json();
 
-    if(data.status === 422 || !data){
+    if(data.status == 422 || data.status == 400 || !data){
       window.alert("Invalid Registration");
       console.log("Invalid Registration");
     } else {
