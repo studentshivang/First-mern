@@ -7,7 +7,6 @@ import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import signupImg from "../images/lotus.png";
 import { NavLink,useNavigate } from "react-router-dom";
-import {registerValidation} from "../../../validation/joiValidation"
 
 const Signup = () => {
 
