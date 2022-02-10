@@ -7,7 +7,7 @@ import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import signupImg from "../images/lotus.png";
 import { NavLink,useNavigate } from "react-router-dom";
-
+import {registerValidation} from "../../../validation/joiValidation"
 
 const Signup = () => {
 
@@ -41,8 +41,9 @@ const Signup = () => {
     });
     
     const data = await response.json();
+    // console.log(data); 
 
-    if(data.status == 422 || data.status == 400 || !data){
+    if(data.status == 422 || !data){
       window.alert("Invalid Registration");
       console.log("Invalid Registration");
     } else {

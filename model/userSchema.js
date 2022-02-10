@@ -61,6 +61,7 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
+
 //we are hashing the password
 userSchema.pre("save", async function (next) {
   //fat arrow function cannot be used with 'this' operator

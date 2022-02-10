@@ -5,8 +5,10 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 const authenticate = require("../middleware/authenticate");
+const {registerValidation} = require('../validation/joiValidation');
 
 //Using promises
+
 
 // router.post('/register',(req,res)=>{
 //     console.log(req.body);
@@ -38,38 +40,21 @@ const authenticate = require("../middleware/authenticate");
 //Using async await
 
 router.post("/register", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   const { name, email, phone, work, password, cpassword } = req.body;
 
-  if (!name || !email || !phone || !work || !password || !cpassword) {
-    return res.status(422).json({ error: `Please fill the field properly!` });
-  }
+  // if (!name || !email || !phone || !work || !password || !cpassword) {
+  //   return res.status(422).json({ error: `Please fill the field properly!` });
+  // }
 
-  const schema = Joi.object({
-    name: Joi.string().alphanum().min(3).max(30).required(),
+  const {error}=registerValidation(req.body);
 
-    email: Joi.string().email({
-      minDomainSegments: 2,
-      tlds: { allow: ["com", "net"] },
-    }),
-
-    phone:Joi.string().min(10).max(13).required(),
-
-    work:Joi.string().required(),
-
-    password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
-    
-    cpassword: Joi.ref('password'),
-    }).with('password', 'cpassword');
-
-  try {
-    const value = await schema.validateAsync(req.body);
-    if(value.error){
-      return res.status(400).send(value.error.details[0].message);
-    }
-  } catch (err) {
-    console.log(err);
+  if(error){
+    return res.status(400).send(error.details[0].message)
+  }else{
+    console.log("data is being sent to mongoDB database");
+    res.status(200).json({message:'data saved!'});
   }
 
   try {
@@ -77,9 +62,7 @@ router.post("/register", async (req, res) => {
 
     if (userExist) {
       return res.status(422).json({ error: "email alreday exists" });
-    } else if (password != cpassword) {
-      return res.status(422).json({ error: "password does not match" });
-    } else {
+    }else {
       const user = new User({ name, email, phone, work, password, cpassword });
       //pre(save) will be executed here
       await user.save();
