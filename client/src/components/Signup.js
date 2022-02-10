@@ -102,7 +102,7 @@ const Signup = () => {
                         value={user.email}
                         onChange={inputEvent}
                         autoComplete="off"
-                        placeholder="Your Emal"
+                        placeholder="Your Email"
                         aria-describedby="inputGroup-sizing-default"
                       />
                     </div>

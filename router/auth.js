@@ -3,9 +3,8 @@ const router = express.Router();
 const User = require("../model/userSchema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const Joi = require("joi");
 const authenticate = require("../middleware/authenticate");
-
 
 //Using promises
 
@@ -45,6 +44,33 @@ router.post("/register", async (req, res) => {
 
   if (!name || !email || !phone || !work || !password || !cpassword) {
     return res.status(422).json({ error: `Please fill the field properly!` });
+  }
+
+  const schema = Joi.object({
+    name: Joi.string().alphanum().min(3).max(30).required(),
+
+    email: Joi.string().email({
+      minDomainSegments: 2,
+      tlds: { allow: ["com", "net"] },
+    }),
+
+    phone:Joi.string().min(10).max(13).required(),
+
+    work:Joi.string().required(),
+
+    password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")),
+    
+    cpassword: Joi.ref('password'),
+    }).with('password', 'cpassword');
+
+  try {
+    const value = await schema.validateAsync(req.body);
+    if(value.error){
+      res.status(400).send(value.error.details[0].message);
+      alert(value.error.details[0].message);
+    }
+  } catch (err) {
+    console.log(err);
   }
 
   try {
