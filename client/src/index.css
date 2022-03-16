@@ -279,15 +279,16 @@ a:hover{
   }
 
   #home_b{
-    background: none;
-    background: linear-gradient(180deg,rgba(360,0,0,1),violet);
+    /* background: none; */
+    height: 100vh,fit-content;
+    background: linear-gradient(180deg,magenta,cyan);
   }
 }
 
 @media (max-width:505px) {
   .home_pg{
-    color:rgb(34, 204, 43);
-    background: url("../src/images/redFlowerbg.jpg");
+    /* color:rgb(34, 204, 43); */
+    background: url("../src/images/portraitbg.jpg");
     background-repeat: no-repeat;
     height: 80vh;
   }

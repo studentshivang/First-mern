@@ -6,10 +6,14 @@ import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import signupImg from "../images/lotus.png";
-import { NavLink,useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Axios from "axios";
+// import { LinearProgress } from "@material-ui/core";
+import EmailValidator from 'email-validator';
 
 const Signup = () => {
-
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -29,33 +33,50 @@ const Signup = () => {
   const PostData = async (event) => {
     event.preventDefault();
 
-    const {name,email,phone,work,password,cpassword} = user;
+    const { name, email, phone, work, password, cpassword } = user;
 
-    const response = await fetch("/register",{
-      method:"POST",
-      headers:{
-          "Content-Type" : "application/json"
-      },//similar to giving headers "Content-Type" : "application/json" in Postman
-      body:JSON.stringify({name,email,phone,work,password,cpassword})  
-    });
-    
-    const data = await response.json();
-    // console.log(data); 
-
-    if(data.status == 422 || !data){
-      window.alert("Invalid Registration");
-      console.log("Invalid Registration");
-    } else {
-      window.alert("Registration successfull");
-      console.log("Successful registration");
-
-      navigate('/login');
+    if (
+      name.length === 0 ||
+      email.length === 0 ||
+      phone.length === 0 ||
+      work.length === 0 ||
+      password.length === 0 ||
+      cpassword.length === 0
+    ) {
+      return toast.error(`some fields are missing!`);
     }
 
+    if(EmailValidator.validate(email)!==true)
+    {
+      return toast.error(`Email Invalid!`);
+    }
+    if (password !== cpassword) {
+      return toast.error(`password and confirm password should be same!`);
+    }
+
+    try {
+      const data = await Axios.post('/register',{ name, email, phone, work, password, cpassword });
+      console.log(data.data);
+      if (data.data.success!==true) {
+        window.alert("Invalid Registration");
+        console.log("Invalid Registration");
+      } else {
+        window.alert("Registration successfull");
+        console.log("Validation Successful!")
+        console.log("Successful registration");
+
+        navigate("/login");
+      }
+    } catch (err) {
+      console.log(err)
+      toast.error(err.response.data.error);
+    }
   };
+  // console.log(data);
 
   return (
     <>
+      <ToastContainer />
       <div>
         <div className="container">
           <div className="row">

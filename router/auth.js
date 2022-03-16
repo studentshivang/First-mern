@@ -38,42 +38,38 @@ const {registerValidation} = require('../validation/joiValidation');
 // });
 
 //Using async await
-
 router.post("/register", async (req, res) => {
-  // console.log(req.body);
-
+    console.log(`----`);
   const { name, email, phone, work, password, cpassword } = req.body;
-
-  // if (!name || !email || !phone || !work || !password || !cpassword) {
-  //   return res.status(422).json({ error: `Please fill the field properly!` });
-  // }
-
   const {error}=registerValidation(req.body);
 
   if(error){
-    return res.status(400).send(error.details[0].message)
-  }else{
-    console.log("data is being sent to mongoDB database");
-    res.status(200).json({message:'data saved!'});
+    
+    return res.status(400).json({
+      success: false,
+      error: error.details[0].message,
+  })
   }
-
-  try {
+  
+    try {
     const userExist = await User.findOne({ email: email }); //TO check if the same email already exists
 
     if (userExist) {
-      return res.status(422).json({ error: "email alreday exists" });
+      return res.status(422).json({ error: "email alreday exists",success:false });
     }else {
       const user = new User({ name, email, phone, work, password, cpassword });
       //pre(save) will be executed here
       await user.save();
-      res.status(201).json({ message: `User registered successfully` });
+      res.status(201).json({ message: `User registered successfully`,success:true });
     }
-  } catch {
-    (err) => {
-      console.log(err);
+  } catch (err){
+    return res.status(400).json({
+      success: false,
+      error: err.message,
+  })
     };
-  }
-});
+}
+);
 
 // login route
 
